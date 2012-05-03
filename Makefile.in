@@ -23,10 +23,10 @@ EXEEXT = @EXEEXT@
 LOCAL_PATHS = "@LOCAL_PATHS@"
 
 # Module-specific stuff
-PACKAGE   = Gauche-hash-set
+PACKAGE   = Gauche-extra-set
 
 ARCHFILES = 
-SCMFILES  = $(srcdir)/hash-set.scm
+SCMFILES  = $(srcdir)/extra/set.scm
 HEADERS   = 
 
 TARGET    = $(ARCHFILES)

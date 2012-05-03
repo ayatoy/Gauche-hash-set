@@ -1,4 +1,4 @@
-(define-module hash-set
+(define-module extra.set
   (use gauche.record)
   (export <hash-set>
           hash-set?
@@ -27,7 +27,9 @@
           hash-set-for-each
           hash-set-map
           hash-set-fold))
-(select-module hash-set)
+(select-module extra.set)
+
+;;;; hash-set
 
 (define-record-type <hash-set> %make-hash-set hash-set?
   (table hash-set-table))
