@@ -35,7 +35,9 @@
   (table hash-set-table))
 
 (define-method write-object ((hs <hash-set>) oport)
-  (format oport "#<hash-set ~s>" (hash-set-type hs)))
+  (format oport "#<hash-set ~s ~s>"
+          (hash-set-type hs)
+          (hash-set-num-entries hs)))
 
 (define (make-hash-set :optional (type 'eq?))
   (%make-hash-set (make-hash-table type)))
