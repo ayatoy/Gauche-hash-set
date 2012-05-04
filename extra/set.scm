@@ -26,7 +26,10 @@
           hash-set-xor!
           hash-set-for-each
           hash-set-map
-          hash-set-fold))
+          hash-set-fold
+          hash-set-jaccard
+          hash-set-dice
+          hash-set-simpson))
 (select-module extra.set)
 
 ;;;; hash-set
@@ -189,3 +192,24 @@
 
 (define (hash-set-fold hs kons knil)
   (hash-table-fold (hash-set-table hs) (^[k v ac] (kons k ac)) knil))
+
+(define (hash-set-jaccard hs1 hs2 :optional if-zero)
+  (let1 d (hash-set-num-entries (hash-set-union hs1 hs2))
+    (if (and (= d 0) (not (undefined? if-zero)))
+      if-zero
+      (/ (hash-set-num-entries (hash-set-intersection hs1 hs2))
+         d))))
+
+(define (hash-set-dice hs1 hs2 :optional if-zero)
+  (let1 d (+ (hash-set-num-entries hs1) (hash-set-num-entries hs2))
+    (if (and (= d 0) (not (undefined? if-zero)))
+      if-zero
+      (/ (* 2 (hash-set-num-entries (hash-set-intersection hs1 hs2)))
+         d))))
+
+(define (hash-set-simpson hs1 hs2 :optional if-zero)
+  (let1 d (min (hash-set-num-entries hs1) (hash-set-num-entries hs2))
+    (if (and (= d 0) (not (undefined? if-zero)))
+      if-zero
+      (/ (hash-set-num-entries (hash-set-intersection hs1 hs2))
+         d))))

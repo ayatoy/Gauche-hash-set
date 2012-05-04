@@ -184,4 +184,31 @@
 (test* "hash-set-fold" 6
        (hash-set-fold (hash-set 'eqv? 1 2 3) + 0))
 
+(test* "hash-set-jaccard 1" 1/2
+       (hash-set-jaccard (hash-set 'eqv? 1 2 3) (hash-set 'eqv? 2 3 4)))
+
+(test* "hash-set-jaccard 2" +nan.0
+       (hash-set-jaccard (hash-set 'eqv?) (hash-set 'eqv?)))
+
+(test* "hash-set-jaccard 3" 1
+       (hash-set-jaccard (hash-set 'eqv?) (hash-set 'eqv?) 1))
+
+(test* "hash-set-dice 1" 2/3
+       (hash-set-dice (hash-set 'eqv? 1 2 3) (hash-set 'eqv? 2 3 4)))
+
+(test* "hash-set-dice 2" +nan.0
+       (hash-set-dice (hash-set 'eqv?) (hash-set 'eqv?)))
+
+(test* "hash-set-dice 3" 1
+       (hash-set-dice (hash-set 'eqv?) (hash-set 'eqv?) 1))
+
+(test* "hash-set-simpson 1" 2/3
+       (hash-set-simpson (hash-set 'eqv? 1 2 3) (hash-set 'eqv? 2 3 4)))
+
+(test* "hash-set-simpson 2" +nan.0
+       (hash-set-simpson (hash-set 'eqv? 1 2 3) (hash-set 'eqv?)))
+
+(test* "hash-set-simpson 3" 0
+       (hash-set-simpson (hash-set 'eqv? 1 2 3) (hash-set 'eqv?) 0))
+
 (test-end)
