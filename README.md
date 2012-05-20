@@ -4,8 +4,8 @@ Gauche 0.9.2
 
 ## Install
 
-    $ git clone git://github.com/ayatoy/Gauche-extra-set.git
-    $ cd Gauche-extra-set
+    $ git clone git://github.com/ayatoy/Gauche-hash-set.git
+    $ cd Gauche-hash-set
     $ ./DIST gen
     $ ./configure
     $ make check

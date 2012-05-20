@@ -2,8 +2,8 @@
 
 (test-start "hash-set")
 
-(use extra.set)
-(test-module 'extra.set)
+(use hash-set)
+(test-module 'hash-set)
 
 (test* "make-hash-set" <hash-set>
        (class-of (make-hash-set)))
