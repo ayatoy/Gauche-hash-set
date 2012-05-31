@@ -9,6 +9,8 @@
           hash-set
           hash-set->list
           list->hash-set
+          hash-set->vector
+          vector->hash-set
           hash-set-exists?
           hash-set-delete!
           hash-set-clear!
@@ -59,6 +61,12 @@
 
 (define (list->hash-set lst :optional (type 'eq?))
   (apply hash-set type lst))
+
+(define (hash-set->vector hs)
+  (list->vector (hash-set->list hs)))
+
+(define (vector->hash-set vec :optional (type 'eq?))
+  (list->hash-set (vector->list vec) type))
 
 (define (hash-set-exists? hs el)
   (hash-table-exists? (hash-set-table hs) el))

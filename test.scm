@@ -1,4 +1,5 @@
 (use gauche.test)
+(use gauche.collection)
 
 (test-start "hash-set")
 
@@ -37,6 +38,22 @@
               (member 1 lst)
               (member 2 lst)
               (member 3 lst)
+              #t)))
+
+(test* "hash-set->vector" #t
+       (let1 vec (hash-set->vector (hash-set 'eqv? 1 2 3))
+         (and (= 3 (vector-length vec))
+              (find (^[x] (= x 1)) vec)
+              (find (^[x] (= x 2)) vec)
+              (find (^[x] (= x 3)) vec)
+              #t)))
+
+(test* "vector->hash-set" #t
+       (let1 vec (hash-set->vector (vector->hash-set '#(1 2 3) 'eqv?))
+         (and (= 3 (vector-length vec))
+              (find (^[x] (= x 1)) vec)
+              (find (^[x] (= x 2)) vec)
+              (find (^[x] (= x 3)) vec)
               #t)))
 
 (test* "hash-set-exists?" #t
